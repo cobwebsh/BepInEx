@@ -314,17 +314,20 @@ public abstract class BaseChainloader<TPlugin>
     /// <summary>
     /// Run the chainloader and load all plugins from the plugins folder.
     /// </summary>
+    internal string status = "";
     public virtual void Execute()
     {
         try
         {
-
+            Util.plugin_status = "before";
             CobwebPatch();
 
             var plugins = DiscoverPlugins();
             Logger.Log(LogLevel.Info, $"{plugins.Count} plugin{(plugins.Count == 1 ? "" : "s")} to load");
 
             LoadPlugins(plugins);
+            Util.plugin_status = "after";
+            Util.Plugins = Plugins;
             CobwebPatch();
         }
         catch (Exception ex)

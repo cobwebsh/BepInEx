@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BepInEx.Core.Cobweb
 {
-    internal class Patches
+    internal class MultiplayerPatches
     {
     }
 
@@ -33,7 +33,7 @@ namespace BepInEx.Core.Cobweb
         }
     }
 
-    [HarmonyPatch("QuickGameHud", "GetGameType")]
+    /*[HarmonyPatch("QuickGameHud", "GetGameType")]
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
@@ -41,6 +41,16 @@ namespace BepInEx.Core.Cobweb
         {
             Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
             __result = "Multiplayer has been disabled to prevent cheating.";
+            return false;
+        }
+    }*/
+    
+    [HarmonyPatch("HudController", "LoginToEpic")]
+    internal class CobwebPatch_QuickGame2
+    {
+        [HarmonyPrefix]
+        public static bool SkipIfModded()
+        {
             return false;
         }
     }

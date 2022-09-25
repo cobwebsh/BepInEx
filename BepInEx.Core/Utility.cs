@@ -17,7 +17,7 @@ public static class Utility
 {
     private const string TRUSTED_PLATFORM_ASSEMBLIES = "TRUSTED_PLATFORM_ASSEMBLIES";
     private static bool? sreEnabled;
-
+    
     /// <summary>
     ///     Whether current Common Language Runtime supports dynamic method generation using
     ///     <see cref="System.Reflection.Emit" /> namespace.
