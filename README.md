@@ -2,58 +2,27 @@
     <img src="https://avatars2.githubusercontent.com/u/39589027?s=256">
 </p>
 
-# BepInEx
+# BepInHecks
 
-![Github All Releases](https://img.shields.io/github/downloads/bepinex/bepinex/total.svg)
+![Github All Releases](https://img.shields.io/github/downloads/cobwebsh/bepinex/total.svg)
 ![GitHub release](https://img.shields.io/github/release/bepinex/bepinex.svg)
-[![BepInEx Discord](https://user-images.githubusercontent.com/7288322/34429117-c74dbd12-ecb8-11e7-896d-46369cd0de5b.png)](https://discord.gg/MpFEDAg)
+[![BepInEx Discord](https://user-images.githubusercontent.com/7288322/34429117-c74dbd12-ecb8-11e7-896d-46369cd0de5b.png)](https://discord.gg/m4244VbvHA)
 
-Bepis Injector Extensible
+Fork for BepInEx for SpiderHeck
 
 ---
 
-BepInEx is a plugin / modding framework for Unity Mono, IL2CPP and .NET framework games (XNA, FNA, MonoGame, etc.)
-
-(Currently only Unity Mono has stable releases)
-
-#### Platform compatibility chart
-
-|              | Windows | OSX  | Linux | ARM |
-|--------------|---------|------|-------|-----|
-| Unity Mono   | ✔️       | ✔️    | ✔️     | N/A |
-| Unity IL2CPP | ✔️       | ❌    | ❌ (Wine only)  | ❌   |
-| .NET / XNA   | ✔️       | Mono | Mono  | N/A |
-
-A more comprehensive comparison list of features and compatibility is available at https://bepis.io/unity.html
+BepInHecks is a modding framework for SpiderHeck. Not many in-date guides are avaliable at this time
 
 ## Resources
 
-**[Latest releases](https://github.com/BepInEx/BepInEx/releases)**
+**[Latest releases](https://github.com/cobwebsh/BepInEx/releases)**
 
-**[Bleeding Edge builds](https://builds.bepinex.dev/projects/bepinex_be)**
+**[Latest development build (direct download)](https://nightly.link/cobwebsh/BepInEx/workflows/build_be/main/BepInEx_CI_ebc1b02_502.zip)**
 
-**[How to install (latest releases)](https://docs.bepinex.dev/articles/user_guide/installation/index.html)**
+**[User and developer guides (outdated)](https://docs.modweaver.org/)**
 
-**[How to install (Bleeding Edge, BepInEx 6)](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)**
-
-**[User and developer guides](https://docs.bepinex.dev/master/)**
-
-**[Discord server](https://discord.gg/MpFEDAg)**
-
-### Available plugin loaders
-
-| Name              | Link to project                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------|
-| BSIPA             | [BepInEx.BSIPA.Loader](https://github.com/BepInEx/BepInEx.BSIPA.Loader)                   |
-| IPA               | [IPALoaderX](https://github.com/BepInEx/IPALoaderX)                                       |
-| MelonLoader       | [BepInEx.MelonLoader.Loader](https://github.com/BepInEx/BepInEx.MelonLoader.Loader)       |
-| MonoMod           | [BepInEx.MonoMod.Loader](https://github.com/BepInEx/BepInEx.MonoMod.Loader)               |
-| MuseDashModLoader | [BepInEx.MDML.Loader](https://github.com/BepInEx/BepInEx.MDML.Loader)                     |
-| Partiality        | [BepInEx-Partiality-Wrapper](https://github.com/sinai-dev/BepInEx-Partiality-Wrapper)     |
-| Sybaris           | [BepInEx.SybarisLoader.Patcher](https://github.com/BepInEx/BepInEx.SybarisLoader.Patcher) |
-| UnityInjector     | [BepInEx.UnityInjector.Loader](https://github.com/BepInEx/BepInEx.UnityInjectorLoader)    |
-| Unity Mod Manager | [Yan.UMMLoader](https://github.com/hacknet-bar/Yan.UMMLoader)                             |
-| uMod              | [BepInEx.uMod.Loader](https://github.com/BepInEx/BepInEx.uMod.Loader)                     |
+**[Discord server](https://discord.gg/m4244VbvHA)**
 
 ## Used libraries
 
@@ -68,21 +37,6 @@ A more comprehensive comparison list of features and compatibility is available 
 - [jbevain/cecil](https://github.com/jbevain/cecil) -
   0.10.4 ([98ec890](https://github.com/jbevain/cecil/commit/98ec890d44643ad88d573e97be0e120435eda732))
 
-#### IL2CPP libraries
-
-- [Perfare/Il2CppDumper](https://github.com/Perfare/Il2CppDumper) - v6.6.3
-  fork ([112e2e8](https://github.com/BepInEx/Il2CppDumper/commit/112e2e8c369dfcb6d5718fd4ad7e3838d7ddabbf))
-- [SamboyCoding/Cpp2IL](https://github.com/SamboyCoding/Cpp2IL) - 2022.0.2
-- [BepInEx/Il2CppAssemblyUnhollower](https://github.com/BepInEx/Il2CppAssemblyUnhollower) - v0.4.31.0 (fork of
-  knah/Il2CppAssemblyUnhollower)
-  fork ([7f059df](https://github.com/BepInEx/Il2CppAssemblyUnhollower/commit/7f059dfd74c7b9dfb4a497965d241943f611bdfb))
-- [mono/mono](https://github.com/mono/mono) - 6.12.0.93
-  fork ([7328415](https://github.com/BepInEx/mono/commit/7328415ac575399a71f32487e97bce9d5fe7f6ca))
-
 ## Credits
 
-- [Usagirei](https://github.com/Usagirei) - Code for using the console and for assisting with technical support
-- [essu](https://github.com/exdownloader) - Project logo, moral support and lots of misc. help
-- [denikson](https://github.com/denikson) - [UnityDoorstop](https://github.com/NeighTools/UnityDoorstop) for the
-  patchless loader
-- [nn@](https://twitter.com/NnAone2cmg) - Japanese translation of the wiki
+- [BepInEx Team](https://github.com/BepInEx)
