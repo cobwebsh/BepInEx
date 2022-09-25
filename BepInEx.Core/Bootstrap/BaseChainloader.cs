@@ -515,3 +515,26 @@ internal class CobwebPatch_Leaderboard
         return false;
     }
 }
+
+[HarmonyPatch("QuickGameHud", "Awake")]
+internal class CobwebPatch_QuickGame
+{
+    [HarmonyPrefix]
+    public static bool SkipIfModded()
+    {
+        Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
+        return false;
+    }
+}
+
+[HarmonyPatch("QuickGameHud", "GetGameType")]
+internal class CobwebPatch_QuickGame2
+{
+    [HarmonyPrefix]
+    public static bool SkipIfModded(ref int __result)
+    {
+        Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
+        __result = 128;
+        return false;
+    }
+}

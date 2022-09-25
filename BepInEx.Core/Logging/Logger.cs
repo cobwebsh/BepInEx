@@ -19,7 +19,7 @@ public static class Logger
         Sources = new LogSourceCollection();
         listeners = new LogListenerCollection();
 
-        InternalLogSource = CreateLogSource("BepInEx");
+        InternalLogSource = CreateLogSource("BepInHex");
     }
 
     /// <summary>
