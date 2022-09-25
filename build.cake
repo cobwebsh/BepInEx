@@ -79,8 +79,15 @@ Task("Build")
     foreach (var file in GetFiles("./BepInEx.*/*.csproj"))
     {
         if (!file.FullPath.Split("/").Last().Contains("IL2CPP")) {
-            DotNetBuild(file.FullPath, buildSettings);
+           if (!file.FullPath.Split("/").Last().Contains("NetLauncher")) {
+             DotNetBuild(file.FullPath, buildSettings);
+           } else {
+             Information("Not building NetLauncher");
+           }
+        } else {
+            Information("Not building IL2CPP");        
         }
+            
     }
 });
 
