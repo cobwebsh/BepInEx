@@ -5,7 +5,7 @@
 #addin nuget:?package=Newtonsoft.Json&version=13.0.1
 #addin nuget:?package=Cake.Http&version=1.3.0
 
-var target = Argument("target", "Pack");
+var target = Argument("target", "Build");
 var isBleedingEdge = Argument("bleeding_edge", false);
 var buildId = Argument("build_id", 0);
 var cleanDependencyCache = Argument("clean_build_cache", false);
