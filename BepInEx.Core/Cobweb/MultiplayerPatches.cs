@@ -49,7 +49,7 @@ namespace BepInEx.Core.Cobweb
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
-        public static bool SkipIfModded(bool quickPlay = false)
+        public static bool SkipIfModded(ref bool quickPlay)
         {
             return !quickPlay;
         }
