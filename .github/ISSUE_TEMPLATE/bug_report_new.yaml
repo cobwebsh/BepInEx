@@ -1,14 +1,14 @@
 name: Bug Report
-description: Report a behaviour that is not desired in BepInEx
+description: Report a behaviour that is not desired in BepInHecks
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-        Please note that this report is for bugs **in BepInEx**.
+        Please note that this report is for bugs **in BepInHecks**.
         
-        If you have an issue with a plugin, contact the plugin developer first.
+        If you have an issue with a mod, contact the mod developer first.
   - type: textarea
     id: basic-description
     attributes:
@@ -33,10 +33,10 @@ body:
     id: bepin-distro
     attributes:
       label: BepInEx Distribution
-      description: What BepInEx build are you using?
+      description: What BepInHecks build are you using?
       options:
-        - Stable from GitHub
-        - Bleeding Edge from BepisBuilds
+        - Stable from GitHub Releases
+        - Bleeding Edge from GitHub Actions (or the link in readme)
         - 3rd party distribution
     validations:
       required: true
@@ -64,7 +64,6 @@ body:
         Example:
           - **OS**: Ubuntu 20.04
           - **BepInEx**: 5.4.13
-          - **Game**: Risk of Rain 2
         
         You can check BepInEx version by checking version of `BepInEx/core/BepInEx.dll` or `BepInEx/core/BepInEx.Core.dll`.
       value: |
