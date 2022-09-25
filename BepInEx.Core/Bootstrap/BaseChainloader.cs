@@ -505,13 +505,13 @@ public abstract class BaseChainloader<TPlugin>
     #endregion
 }
 
-[HarmonyPatch(typeof(SteamLeaderboards), "UpdateScore")]
+[HarmonyPatch("SteamLeaderboards", "UpdateScore")]
 internal class CobwebPatch_Leaderboard
 {
     [HarmonyPrefix]
     public static bool SkipIfModded(int score)
     {
-        Logger.Log(LogLevel.Info, "Skipping leaderboard save");
+        Logger.Log(LogLevel.Info, "Skipping leaderboard save of " + score);
         return false;
     }
 }

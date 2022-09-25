@@ -30,7 +30,7 @@ public class UnityChainloader : BaseChainloader<BaseUnityPlugin>
 
     private static readonly ConfigEntry<bool> ConfigDiskWriteUnityLog = ConfigFile.CoreConfig.Bind(
      "Logging.Disk", "WriteUnityLog",
-     false,
+     true,
      "Include unity log messages in log file output.");
 
     private string _consoleTitle;
