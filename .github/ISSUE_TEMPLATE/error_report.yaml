@@ -6,9 +6,9 @@ body:
     attributes:
       value: |
         Thanks for taking the time to send over an error!
-        Note that while errors can be logged as BepInEx errors, they might not be related to BepInEx itself.
+        Note that while errors can be logged as BepInHecks errors, they might not be related to BepInHecks itself.
         
-        If you have an issue with a plugin, contact the plugin developer first.
+        If you have an issue with a mod, contact the mod developer first.
   - type: textarea
     id: basic-description
     attributes:
@@ -20,11 +20,11 @@ body:
   - type: dropdown
     id: bepin-distro
     attributes:
-      label: BepInEx Distribution
-      description: What BepInEx build are you using?
+      label: BepInHecks Distribution
+      description: What BepInHecks build are you using?
       options:
         - Stable from GitHub
-        - Bleeding Edge from BepisBuilds
+        - Bleeding Edge from GitHub Actions (or from link in readme)
         - 3rd party distribution
     validations:
       required: true
@@ -52,13 +52,11 @@ body:
         Example:
           - **OS**: Ubuntu 20.04
           - **BepInEx**: 5.4.13
-          - **Game**: Risk of Rain 2
         
         You can check BepInEx version by checking version of `BepInEx/core/BepInEx.dll` or `BepInEx/core/BepInEx.Core.dll`.
       value: |
           - OS: 
           - BepInEx: 
-          - Game: 
       render: markdown
     validations:
       required: true
