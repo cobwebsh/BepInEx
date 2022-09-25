@@ -51,6 +51,7 @@ namespace BepInEx.Core.Cobweb
         [HarmonyPrefix]
         public static bool SkipIfModded(ref bool quickPlay)
         {
+            Logger.Log(LogLevel.Info, "QUICKPLAY_BOOL: " + quickPlay);
             return !quickPlay;
         }
     }
