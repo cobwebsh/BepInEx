@@ -3,7 +3,7 @@ name: Build Bleeding Edge
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
