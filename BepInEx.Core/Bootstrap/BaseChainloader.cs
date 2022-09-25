@@ -316,6 +316,7 @@ public abstract class BaseChainloader<TPlugin>
     {
         try
         {
+
             CobwebPatch();
 
             var plugins = DiscoverPlugins();
@@ -504,7 +505,7 @@ public abstract class BaseChainloader<TPlugin>
     #endregion
 }
 
-[HarmonyPatch("SteamLeaderboards", "UpdateScore")]
+[HarmonyPatch(typeof(SteamLeaderboards), "UpdateScore")]
 internal class CobwebPatch_Leaderboard
 {
     [HarmonyPrefix]
