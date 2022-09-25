@@ -6,7 +6,7 @@
 #addin nuget:?package=Cake.Http&version=1.3.0
 
 var target = Argument("target", "Build");
-var isBleedingEdge = Argument("bleeding_edge", false);
+var isBleedingEdge = false;
 var buildId = Argument("build_id", 0);
 var cleanDependencyCache = Argument("clean_build_cache", false);
 var lastBuildCommit = Argument("last_build_commit", "");
@@ -196,7 +196,6 @@ Task("MakeDist")
     void PackageBepin(string platform, string arch, string originDir, string doorstopConfigFile = null, bool copyMono = false) 
     {
         var platformName = platform + (arch == null ? "" : "_" + arch);
-        var isUnix = arch == "unix";
 
         Information("Creating distributions for platform \"" + platformName + "\"...");
     
@@ -205,13 +204,12 @@ Task("MakeDist")
         if (arch != null)
         {
             doorstopArchPath = doorstopPath + Directory(arch)
-                + File(isUnix ? "*.*" : DOORSTOP_DLL);
+                + File(DOORSTOP_DLL);
         }
         
         var distArchDir = distDir + Directory(platformName);
         var bepinDir = distArchDir + Directory("BepInEx");
         var doorstopDir = distArchDir;
-        if (isUnix) doorstopDir += Directory("doorstop_libs");
         
         CreateDirectory(distArchDir);
         CreateDirectory(doorstopDir);
@@ -221,13 +219,10 @@ Task("MakeDist")
 
         if (doorstopArchPath != null)
         {
-            CopyFile("./doorstop/" + doorstopConfigFile, Directory(distArchDir) + File(isUnix ? "run_bepinex.sh" : "doorstop_config.ini"));
+            CopyFile("./doorstop/" + doorstopConfigFile, Directory(distArchDir) + File("doorstop_config.ini"));
             CopyFiles(doorstopArchPath, doorstopDir);
 
-            if (isUnix)
-            {
-                ReplaceTextInFiles($"{distArchDir}/run_bepinex.sh", "\r\n", "\n");
-            }
+
 
             if (copyMono)
             {
@@ -238,12 +233,6 @@ Task("MakeDist")
         CopyFiles($"./bin/{originDir}/*.*", Directory(bepinDir) + Directory("core"));
 
         FileWriteText(distArchDir + File("changelog.txt"), changelog);
-
-        if (platform == "NetLauncher")
-        {
-            DeleteFile(Directory(bepinDir) + Directory("core") + File("BepInEx.NetLauncher.exe.config"));
-            MoveFiles((string)(Directory(bepinDir) + Directory("core") + File("BepInEx.NetLauncher.*")), Directory(distArchDir));
-        }
     }
 
     PackageBepin("UnityMono", "x86", "Unity", "doorstop_config_mono.ini");
@@ -287,22 +276,6 @@ Task("Pack")
                     new() {
                         ["file"] = $"BepInEx_UnityMono_x86{commitPrefix}{buildVersion}.zip",
                         ["description"] = "BepInEx Unity Mono for Windows x86 games"
-                    },
-                    new() {
-                        ["file"] = $"BepInEx_UnityMono_unix{commitPrefix}{buildVersion}.zip",
-                        ["description"] = "BepInEx Unity Mono for Unix games using GCC (Linux, MacOS)"
-                    },
-                    new() {
-                        ["file"] = $"BepInEx_UnityIL2CPP_x64{commitPrefix}{buildVersion}.zip",
-                        ["description"] = "BepInEx Unity IL2CPP for Windows x64 games"
-                    },
-                    new() {
-                        ["file"] = $"BepInEx_UnityIL2CPP_x86{commitPrefix}{buildVersion}.zip",
-                        ["description"] = "BepInEx Unity IL2CPP for Windows x86 games"
-                    },
-                    new() {
-                        ["file"] = $"BepInEx_NetLauncher{commitPrefix}{buildVersion}.zip",
-                        ["description"] = "BepInEx .NET Launcher for .NET Framework/XNA games"
                     },
                 }
             }));
