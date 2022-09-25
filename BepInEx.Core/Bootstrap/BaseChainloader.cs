@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using HarmonyLib;
 using Mono.Cecil;
 
 namespace BepInEx.Bootstrap;
@@ -296,15 +297,32 @@ public abstract class BaseChainloader<TPlugin>
     }
 
     /// <summary>
+    /// Patches for SpiderHeck to stop low-effort cheat mods and script kiddies.
+    /// </summary>
+    public void CobwebPatch()
+    {
+        Logger.Log(LogLevel.Info, "Running Cobweb Patch");
+        // Creating new harmony instance
+        Harmony harmony = new Harmony("cobweb.bepinhex.patcher");
+
+        // Applying patches
+        harmony.PatchAll();
+    }
+
+    /// <summary>
     /// Run the chainloader and load all plugins from the plugins folder.
     /// </summary>
     public virtual void Execute()
     {
         try
         {
+            CobwebPatch();
+
             var plugins = DiscoverPlugins();
             Logger.Log(LogLevel.Info, $"{plugins.Count} plugin{(plugins.Count == 1 ? "" : "s")} to load");
+
             LoadPlugins(plugins);
+            CobwebPatch();
         }
         catch (Exception ex)
         {
@@ -484,4 +502,15 @@ public abstract class BaseChainloader<TPlugin>
          .ToString());
 
     #endregion
+}
+
+[HarmonyPatch("SteamLeaderboards", "UpdateScore")]
+internal class CobwebPatch_Leaderboard
+{
+    [HarmonyPrefix]
+    public static bool SkipIfModded(int score)
+    {
+        Logger.Log(LogLevel.Info, "Skipping leaderboard save");
+        return false;
+    }
 }
