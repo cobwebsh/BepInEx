@@ -1,5 +1,5 @@
 name: Error Report
-description: Unsure if an error is a bug? Post an error message or error log you got from BepInEx
+description: Unsure if an error is a bug? Post an error message or error log you got from BepInHecks
 labels: [error, needs-replication]
 body:
   - type: markdown
