@@ -229,7 +229,8 @@ Task("MakeDist")
             CopyFile("./doorstop/" + doorstopConfigFile, Directory(distArchDir) + File("doorstop_config.ini"));
             CopyFiles(doorstopArchPath, doorstopDir);
 
-
+            CopyFile("./scripts/UninstallBepinhecks.bat", Directory(distArchDir) + File("Uninstall_Bepinhecks.bat"));
+            CopyFile("./scripts/UninstallBepinhecks.sh", Directory(distArchDir) + File("Uninstall_Bepinhecks.sh"));
 
             if (copyMono)
             {
