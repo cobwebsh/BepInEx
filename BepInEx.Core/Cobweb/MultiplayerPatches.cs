@@ -45,14 +45,14 @@ namespace BepInEx.Core.Cobweb
         }
     }*/
     
-    [HarmonyPatch("HudController", "StartVersus")]
+    [HarmonyPatch("HudController", "QuickGameNewGame")]
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
-        public static bool SkipIfModded(ref bool quickGame)
+        public static bool SkipIfModded(ref bool isJoined)
         {
-            Logger.Log(LogLevel.Info, "QUICKPLAY_BOOL: " + quickGame);
-            return !quickGame;
+            Logger.Log(LogLevel.Info, "QUICKPLAY_BOOL: " + isJoined);
+            return false;
         }
     }
 }
