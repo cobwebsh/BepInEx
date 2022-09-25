@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using Mono.Cecil;
+using MonoMod.Cil;
 
 namespace BepInEx.Bootstrap;
 
@@ -504,38 +506,3 @@ public abstract class BaseChainloader<TPlugin>
 
     #endregion
 }
-
-[HarmonyPatch("SteamLeaderboards", "UpdateScore")]
-internal class CobwebPatch_Leaderboard
-{
-    [HarmonyPrefix]
-    public static bool SkipIfModded(int score)
-    {
-        Logger.Log(LogLevel.Info, "Skipping leaderboard save of " + score);
-        return false;
-    }
-}
-
-[HarmonyPatch("QuickGameHud", "Awake")]
-internal class CobwebPatch_QuickGame
-{
-    [HarmonyPrefix]
-    public static bool SkipIfModded()
-    {
-        Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
-        return false;
-    }
-}
-
-[HarmonyPatch("QuickGameHud", "GetGameType")]
-internal class CobwebPatch_QuickGame2
-{
-    [HarmonyPrefix]
-    public static bool SkipIfModded(ref string __result)
-    {
-        Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
-        __result = "Multiplayer has been disabled to prevent cheating.";
-        return false;
-    }
-}
-
