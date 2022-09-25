@@ -27,9 +27,13 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Remove="Contract\IPlugin.cs" />
+        <Compile Remove="Cobweb\**" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Cobweb\" />
+      <EmbeddedResource Remove="Cobweb\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Cobweb\**" />
     </ItemGroup>
     <Import Project="..\BepInEx.Shared\BepInEx.Shared.projitems" Label="Shared" />
 
