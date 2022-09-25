@@ -22,7 +22,7 @@ namespace BepInEx.Core.Cobweb
         }
     }
 
-    [HarmonyPatch("QuickGameHud", "Awake")]
+    /*[HarmonyPatch("QuickGameHud", "Awake")]
     internal class CobwebPatch_QuickGame
     {
         [HarmonyPrefix]
