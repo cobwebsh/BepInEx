@@ -75,19 +75,17 @@ Task("Build")
         buildVersion = customBuildVersion;
         buildSettings.MSBuildSettings.Properties["Version"] = new[] { buildVersion };
     }
-
+    
     foreach (var file in GetFiles("./BepInEx.*/*.csproj"))
     {
-        if (!file.FullPath.Split("/").Last().Contains("IL2CPP")) {
-           if (!file.FullPath.Split("/").Last().Contains("NetLauncher")) {
-             DotNetBuild(file.FullPath, buildSettings);
-           } else {
-             Information("Not building NetLauncher");
-           }
-        } else {
-            Information("Not building IL2CPP");        
-        }
-            
+       bool il2cpp = file.FullPath.Contains("BepInEx.IL2CPP");
+       bool netlauncher = file.FullPath.Contains("BepInEx.NetLauncher") || file.FullPath.Contains("BepInEx.NetLauncher.Common") || file.FullPath.Contains("BepInEx.NetLauncher.Shared") || file.FullPath.Contains("BepInEx.NetCore"); 
+       bool not_valid = il2cpp || netlauncher;
+       bool valid = !not_valid;
+       Information("LOG_IL: " + il2cpp.ToString() + " LOG_NL: " + netlauncher.ToString() + " LOG_NV: " + not_valid.ToString() + " LOG_V: " + valid.ToString());
+       if (valid) {
+          DotNetBuild(file.FullPath, buildSettings); 
+       }     
     }
 });
 
