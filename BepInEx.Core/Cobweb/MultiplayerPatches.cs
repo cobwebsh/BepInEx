@@ -45,13 +45,13 @@ namespace BepInEx.Core.Cobweb
         }
     }*/
     
-    [HarmonyPatch("HudController", "LoginToEpic")]
+    [HarmonyPatch("HudController", "StartVersus")]
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
-        public static bool SkipIfModded()
+        public static bool SkipIfModded(bool quickPlay = false)
         {
-            return false;
+            return !quickPlay;
         }
     }
 }
