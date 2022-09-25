@@ -531,10 +531,10 @@ internal class CobwebPatch_QuickGame
 internal class CobwebPatch_QuickGame2
 {
     [HarmonyPrefix]
-    public static bool SkipIfModded(ref int __result)
+    public static bool SkipIfModded(ref string __result)
     {
         Logger.Log(LogLevel.Info, "Removing game types from Quick Play");
-        __result = 128;
+        __result = "Multiplayer has been disabled to prevent cheating.";
         return false;
     }
 }
