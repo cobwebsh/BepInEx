@@ -78,7 +78,9 @@ Task("Build")
 
     foreach (var file in GetFiles("./BepInEx.*/*.csproj"))
     {
-        DotNetBuild(file.FullPath, buildSettings);
+        if (!file.name.Contains("IL2CPP") {
+            DotNetBuild(file.FullPath, buildSettings);
+        }
     }
 });
 
