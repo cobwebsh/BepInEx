@@ -538,3 +538,4 @@ internal class CobwebPatch_QuickGame2
         return false;
     }
 }
+
