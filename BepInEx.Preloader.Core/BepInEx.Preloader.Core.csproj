@@ -16,12 +16,12 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj"/>
+        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj" />
     </ItemGroup>
-    <Import Project="..\BepInEx.Shared\BepInEx.Shared.projitems" Label="Shared"/>
+    <Import Project="..\BepInEx.Shared\BepInEx.Shared.projitems" Label="Shared" />
     <ItemGroup>
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All"/>
-        <PackageReference Include="HarmonyX" Version="2.10.0"/>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+        <PackageReference Include="HarmonyX" Version="2.10.0" />
         <PackageReference Include="MonoMod.RuntimeDetour" Version="22.5.1.1" />
         <PackageReference Include="MonoMod.Utils" Version="22.5.1.1" />
     </ItemGroup>

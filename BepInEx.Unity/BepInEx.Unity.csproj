@@ -20,14 +20,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj"/>
-        <ProjectReference Include="..\BepInEx.Preloader.Core\BepInEx.Preloader.Core.csproj" PrivateAssets="All"/>
-        <ProjectReference Include="..\BepInEx.Preloader.Unity\BepInEx.Preloader.Unity.csproj" PrivateAssets="All"/>
+        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj" />
+        <ProjectReference Include="..\BepInEx.Preloader.Core\BepInEx.Preloader.Core.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\BepInEx.Preloader.Unity\BepInEx.Preloader.Unity.csproj" PrivateAssets="All" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All"/>
-        <PackageReference Include="HarmonyX" Version="2.10.0"/>
-        <PackageReference Include="UnityEngine" Version="5.6.1" IncludeAssets="compile"/>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+        <PackageReference Include="HarmonyX" Version="2.10.0" />
+        <PackageReference Include="UnityEngine" Version="5.6.1" IncludeAssets="compile" />
     </ItemGroup>
-    <Import Project="..\BepInEx.Shared\BepInEx.Shared.projitems" Label="Shared"/>
+    <Import Project="..\BepInEx.Shared\BepInEx.Shared.projitems" Label="Shared" />
 </Project>

@@ -6,8 +6,8 @@
         <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
         <IsCodedUITest>False</IsCodedUITest>
         <TestProjectType>UnitTest</TestProjectType>
-        <FileUpgradeFlags/>
-        <UpgradeBackupLocation/>
+        <FileUpgradeFlags />
+        <UpgradeBackupLocation />
         <AssemblyTitle>BepInExTests</AssemblyTitle>
         <Product>BepInExTests</Product>
         <Copyright>Copyright © 2020 BepInEx Team</Copyright>
@@ -20,18 +20,18 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
         <DebugType>pdbonly</DebugType>
     </PropertyGroup>
-    <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')"/>
+    <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
     <ItemGroup>
-        <PackageReference Include="Iced" Version="1.17.0"/>
-        <PackageReference Include="MSTest.TestAdapter" Version="2.2.9"/>
-        <PackageReference Include="MSTest.TestFramework" Version="2.2.9"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
-        <PackageReference Include="UnityEngine" Version="5.6.1" Aliases="UEC"/>
+        <PackageReference Include="Iced" Version="1.17.0" />
+        <PackageReference Include="MSTest.TestAdapter" Version="2.2.9" />
+        <PackageReference Include="MSTest.TestFramework" Version="2.2.9" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="UnityEngine" Version="5.6.1" Aliases="UEC" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj"/>
-        <ProjectReference Include="..\BepInEx.IL2CPP\BepInEx.IL2CPP.csproj"/>
+        <ProjectReference Include="..\BepInEx.Core\BepInEx.Core.csproj" />
+        <ProjectReference Include="..\BepInEx.IL2CPP\BepInEx.IL2CPP.csproj" />
         <!--  BepInEx.Unity only targets net35 because that's supported by all mono variants. -->
-        <ProjectReference Include="..\BepInEx.Unity\BepInEx.Unity.csproj"/>
+        <ProjectReference Include="..\BepInEx.Unity\BepInEx.Unity.csproj" />
     </ItemGroup>
 </Project>
