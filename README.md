@@ -5,7 +5,7 @@
 # BepInHecks
 
 ![Github All Releases](https://img.shields.io/github/downloads/cobwebsh/bepinex/total.svg)
-![GitHub release](https://img.shields.io/github/release/bepinex/bepinex.svg)
+![GitHub release](https://img.shields.io/github/release/cobwebsh/bepinex.svg)
 [![BepInEx Discord](https://user-images.githubusercontent.com/7288322/34429117-c74dbd12-ecb8-11e7-896d-46369cd0de5b.png)](https://discord.gg/m4244VbvHA)
 
 Fork for BepInEx for SpiderHeck
