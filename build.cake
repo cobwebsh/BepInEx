@@ -248,10 +248,6 @@ Task("MakeDist")
 
     PackageBepin("UnityMono", "x86", "Unity", "doorstop_config_mono.ini");
     PackageBepin("UnityMono", "x64", "Unity", "doorstop_config_mono.ini");
-    PackageBepin("UnityMono", "unix", "Unity", "run_bepinex.sh");
-    PackageBepin("UnityIL2CPP", "x86", "IL2CPP", "doorstop_config_il2cpp.ini", copyMono: true);
-    PackageBepin("UnityIL2CPP", "x64", "IL2CPP", "doorstop_config_il2cpp.ini", copyMono: true);
-    PackageBepin("NetLauncher", null, "NetLauncher");
 });
 
 Task("Pack")
@@ -265,10 +261,6 @@ Task("Pack")
     Information("Packing BepInEx");
     ZipCompress(distDir + Directory("UnityMono_x86"), distDir + File($"BepInEx_UnityMono_x86{commitPrefix}{buildVersion}.zip"));
     ZipCompress(distDir + Directory("UnityMono_x64"), distDir + File($"BepInEx_UnityMono_x64{commitPrefix}{buildVersion}.zip"));
-    ZipCompress(distDir + Directory("UnityMono_unix"), distDir + File($"BepInEx_UnityMono_unix{commitPrefix}{buildVersion}.zip"));
-    ZipCompress(distDir + Directory("UnityIL2CPP_x86"), distDir + File($"BepInEx_UnityIL2CPP_x86{commitPrefix}{buildVersion}.zip"));
-    ZipCompress(distDir + Directory("UnityIL2CPP_x64"), distDir + File($"BepInEx_UnityIL2CPP_x64{commitPrefix}{buildVersion}.zip"));
-    ZipCompress(distDir + Directory("NetLauncher"), distDir + File($"BepInEx_NetLauncher{commitPrefix}{buildVersion}.zip"));
 
     if(isBleedingEdge) 
     {
