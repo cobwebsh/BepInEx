@@ -45,13 +45,13 @@ namespace BepInEx.Core.Cobweb
         }
     }*/
     
-    [HarmonyPatch("HudController", "QuickGameNewGame")]
+    [HarmonyPatch("HudController", "ShowQuickGamePrompt")]
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
-        public static bool SkipIfModded(ref bool isJoined)
+        public static bool SkipIfModded()
         {
-            Logger.Log(LogLevel.Info, "QUICKPLAY_BOOL: " + isJoined);
+            Logger.Log(LogLevel.Info, "Attempted to show QuickPlay prompt. BLOCKED!");
             return false;
         }
     }
