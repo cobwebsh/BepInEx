@@ -232,6 +232,8 @@ Task("MakeDist")
             CopyFile("./scripts/UninstallBepinhecks.bat", Directory(distArchDir) + File("Uninstall_Bepinhecks.bat"));
             CopyFile("./scripts/UninstallBepinhecks.sh", Directory(distArchDir) + File("Uninstall_Bepinhecks.sh"));
 
+            CopyDirectory("./plugins", Directory(distArchDir) + Directory("BepInEx/plugins"));
+
             if (copyMono)
             {
                 CopyDirectory(monoPath + Directory(arch) + Directory("mono"), Directory(distArchDir) + Directory("mono"));
