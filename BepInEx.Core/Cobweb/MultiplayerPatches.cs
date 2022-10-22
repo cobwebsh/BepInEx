@@ -3,6 +3,7 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace BepInEx.Core.Cobweb
@@ -49,10 +50,30 @@ namespace BepInEx.Core.Cobweb
     internal class CobwebPatch_QuickGame2
     {
         [HarmonyPrefix]
-        public static bool SkipIfModded()
+        public static bool SkipIfModded(ref object __instance)
         {
             Logger.Log(LogLevel.Info, "Attempted to show QuickPlay prompt. BLOCKED!");
+            AnnounceAtRuntime("QuickPlay has been disabled in modded play", 255, 255, 255, __instance);
             return false;
+        }
+
+        internal static void AnnounceAtRuntime(string text, int colorR, int colorG, int colorB, object InstanceRef)
+        {
+            Type announcerType = Assembly.GetAssembly(InstanceRef.GetType()).GetType("Announcer", true);
+            object announcer = Activator.CreateInstance(announcerType);
+            announcer = announcerType.GetField("instance").GetValue(announcer);
+            MethodInfo announceMethod = announcerType.GetMethods()
+                .Where(mi => mi.Name == "Announce")
+                .Where(mi => mi.GetParameters().Length == 4)
+                .Where(mi => mi.GetParameters()[0].ParameterType == typeof(string))
+                .Where(mi => mi.GetParameters()[2].ParameterType == typeof(bool))
+                .Where(mi => mi.GetParameters()[3].ParameterType == typeof(bool))
+                .First();
+
+            Type unityColor = announceMethod.GetParameters()[1].ParameterType;
+            object redColor = Activator.CreateInstance(unityColor, new object[] { colorR, colorG, colorB });
+
+            announceMethod.Invoke(announcer, new object[] { text, redColor, true, false });
         }
     }
 
@@ -69,7 +90,7 @@ namespace BepInEx.Core.Cobweb
                 var textMeshInfo = __instance.GetType().GetField("textMesh");
                 var textMesh = textMeshInfo.GetValue(__instance);
 
-                //Logger.Log(LogLevel.Warning, "TextMesh via reflecttion: " + textMesh.ToString());
+                //Logger.Log(LogLevel.Warning, "TextMesh via reflection: " + textMesh.ToString());
 
                 var setTextInfo = textMesh.GetType().GetMethods().Where(m => m.Name == "SetText").Where(m => m.GetParameters().Length == 1).First();
 
