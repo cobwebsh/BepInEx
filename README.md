@@ -1,5 +1,5 @@
 ﻿<p align="center">
-    <img src="https://avatars2.githubusercontent.com/u/39589027?s=256">
+    <img src="https://raw.githubusercontent.com/cobwebsh/art/main/branding/bepinhecks/bepinhecks_marktext/bepinhecks_marktext_256h.png">
 </p>
 
 # BepInHecks
