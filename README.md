@@ -16,11 +16,11 @@ BepInHecks is a modding framework for SpiderHeck. Not many in-date guides are av
 
 ## Resources
 
-**[Latest releases](https://github.com/cobwebsh/BepInEx/releases)**
+**[Latest releases](https://github.com/cobwebsh/BepInHecks/releases)**
 
-**[Latest development build (direct download)](https://nightly.link/cobwebsh/BepInEx/workflows/build_be/main/BepInEx_CI_ebc1b02_502.zip)**
+**[Latest development build (direct download)]([https://nightly.link/cobwebsh/BepInEx/workflows/build_be/main/BepInEx_CI_ebc1b02_502.zip](https://nightly.link/cobwebsh/BepInHecks/workflows/build_be/main/BepInHecks_CI.zip))**
 
-**[User and developer guides (outdated)](https://docs.modweaver.org/)**
+**[User and developer guides ]()**
 
 **[Discord server](https://discord.gg/m4244VbvHA)**
 
