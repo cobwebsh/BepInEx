@@ -49,31 +49,14 @@ namespace BepInEx.Core.Cobweb
     [HarmonyPatch("HudController", "ShowQuickGamePrompt")]
     internal class CobwebPatch_QuickGame2
     {
+        private static bool done = false;
         [HarmonyPrefix]
         public static bool SkipIfModded(ref object __instance)
         {
             Logger.Log(LogLevel.Info, "Attempted to show QuickPlay prompt. BLOCKED!");
-            AnnounceAtRuntime("QuickPlay has been disabled in modded play", 255, 255, 255, __instance);
+            if(!done) RuntimeApis.AnnounceAtRuntime("QuickPlay has been disabled in modded play", 255, 255, 255, __instance.GetType());
+            done = !done;
             return false;
-        }
-
-        internal static void AnnounceAtRuntime(string text, int colorR, int colorG, int colorB, object InstanceRef)
-        {
-            Type announcerType = Assembly.GetAssembly(InstanceRef.GetType()).GetType("Announcer", true);
-            object announcer = Activator.CreateInstance(announcerType);
-            announcer = announcerType.GetField("instance").GetValue(announcer);
-            MethodInfo announceMethod = announcerType.GetMethods()
-                .Where(mi => mi.Name == "Announce")
-                .Where(mi => mi.GetParameters().Length == 4)
-                .Where(mi => mi.GetParameters()[0].ParameterType == typeof(string))
-                .Where(mi => mi.GetParameters()[2].ParameterType == typeof(bool))
-                .Where(mi => mi.GetParameters()[3].ParameterType == typeof(bool))
-                .First();
-
-            Type unityColor = announceMethod.GetParameters()[1].ParameterType;
-            object redColor = Activator.CreateInstance(unityColor, new object[] { colorR, colorG, colorB });
-
-            announceMethod.Invoke(announcer, new object[] { text, redColor, true, false });
         }
     }
 
@@ -116,5 +99,44 @@ namespace BepInEx.Core.Cobweb
                 hasDoneTextPatch = true;
             }
         }
+    }
+
+    /*[HarmonyPatch("HudController", "SetActiveGraphNode")]
+    internal class CobwebPatch_HudController
+    {
+        [HarmonyPostfix]
+        public static void LogGraphNodes(ref object __instance)
+        {
+            var graphControllerInfo = __instance.GetType().GetField("graphController");
+            var graphController = graphControllerInfo.GetValue(__instance);
+            var graphInfo = graphController.GetType().GetProperty("Graph");
+            var graph = graphInfo.GetValue(graphController, null);
+            var nodesInfo = graph.GetType().GetProperty("Nodes");
+            var nodes = nodesInfo.GetValue(graph, null);
+            Logger.Log(LogLevel.Warning, "Nodes: " + string.Join(",", (nodes as List<object>).);
+        }
+    }*/
+}
+
+public class RuntimeApis
+{
+    public static void AnnounceAtRuntime(string text, int colorR, int colorG, int colorB, Type gameTypeRef)
+    {
+        Assembly a = Assembly.GetAssembly(gameTypeRef);
+        Type announcerType = a.GetType("Announcer", true);
+        object announcer = Activator.CreateInstance(announcerType);
+        announcer = announcerType.GetField("instance").GetValue(announcer);
+        MethodInfo announceMethod = announcerType.GetMethods()
+            .Where(mi => mi.Name == "Announce")
+            .Where(mi => mi.GetParameters().Length == 4)
+            .Where(mi => mi.GetParameters()[0].ParameterType == typeof(string))
+            .Where(mi => mi.GetParameters()[2].ParameterType == typeof(bool))
+            .Where(mi => mi.GetParameters()[3].ParameterType == typeof(bool))
+            .First();
+
+        Type unityColor = announceMethod.GetParameters()[1].ParameterType;
+        object redColor = Activator.CreateInstance(unityColor, new object[] { colorR, colorG, colorB });
+
+        announceMethod.Invoke(announcer, new object[] { text, redColor, true, false });
     }
 }
