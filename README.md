@@ -1,5 +1,5 @@
 ﻿<p align="center">
-    <img src="https://avatars2.githubusercontent.com/u/39589027?s=256">
+    <img src="https://raw.githubusercontent.com/cobwebsh/art/main/branding/bepinhecks/bepinhecks_marktext/bepinhecks_marktext_512h.png">
 </p>
 
 # BepInHecks
@@ -16,11 +16,11 @@ BepInHecks is a modding framework for SpiderHeck. Not many in-date guides are av
 
 ## Resources
 
-**[Latest releases](https://github.com/cobwebsh/BepInEx/releases)**
+**[Latest releases](https://github.com/cobwebsh/BepInHecks/releases)**
 
-**[Latest development build (direct download)](https://nightly.link/cobwebsh/BepInEx/workflows/build_be/main/BepInEx_CI_ebc1b02_502.zip)**
+**[Latest development build (direct download)](https://nightly.link/cobwebsh/BepInHecks/workflows/build_be/main/BepInHecks_CI.zip)**
 
-**[User and developer guides (outdated)](https://docs.modweaver.org/)**
+**[User and developer guides](https://github.com/cobwebsh/BepInHecks)**
 
 **[Discord server](https://discord.gg/m4244VbvHA)**
 
