@@ -191,7 +191,12 @@ public abstract class BaseChainloader<TPlugin>
     {
         var pluginsToLoad =
             TypeLoader.FindPluginTypes(path, ToPluginInfo, HasBepinPlugins, cacheName);
-        return pluginsToLoad.SelectMany(p => p.Value).ToList();
+        var output = pluginsToLoad.SelectMany(p => p.Value).ToList();
+        var data = new List<String>();
+        output.ForEach(a => data.Add(a.Metadata.Name));
+        Logger.Log(LogLevel.Debug, "Found Plugins: ");
+        Logger.Log(LogLevel.Debug, data);
+        return output;
     }
 
     /// <summary>
@@ -301,11 +306,11 @@ public abstract class BaseChainloader<TPlugin>
     /// <summary>
     /// Patches for SpiderHeck to stop low-effort cheat mods and script kiddies.
     /// </summary>
-    public void CobwebPatch()
+    public void BepInHecksRuntimePatch()
     {
-        Logger.Log(LogLevel.Info, "Running Cobweb Patch");
+        Logger.Log(LogLevel.Info, "Running BepInHecks Runtime Patch");
         // Creating new harmony instance
-        Harmony harmony = new Harmony("cobweb.bepinhex.patcher");
+        Harmony harmony = new Harmony("org.modweaver.bepinhecks.patcher");
 
         // Applying patches
         harmony.PatchAll();
@@ -320,7 +325,7 @@ public abstract class BaseChainloader<TPlugin>
         try
         {
             Util.plugin_status = "before";
-            CobwebPatch();
+            BepInHecksRuntimePatch();
 
             var plugins = DiscoverPlugins();
             Logger.Log(LogLevel.Info, $"{plugins.Count} plugin{(plugins.Count == 1 ? "" : "s")} to load");
@@ -328,7 +333,7 @@ public abstract class BaseChainloader<TPlugin>
             LoadPlugins(plugins);
             Util.plugin_status = "after";
             Util.Plugins = Plugins;
-            CobwebPatch();
+            BepInHecksRuntimePatch();
         }
         catch (Exception ex)
         {
